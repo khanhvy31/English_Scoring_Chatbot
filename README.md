@@ -1,0 +1,3 @@
+Only 13% of eighth-grade teachers require their students to write persuasively at least once a week. And out of 13% of teachers who asked their students to write claimed they didn’t have time to mark and provide appropriate feedback. Given this, it is difficult for a non-native English speaker to write fluently. As a result, there is an urgent demand for effective automated feedback tools that can grade and provide feedback.
+Since 2019, there has been ongoing competition on Kaggle for developing automated feedback tools, with the most recent competition taking place in 2022, just before OpenAI announces ChatGPT.
+This chatbot is to create an automated feedback tools - speech recognition for english learners
