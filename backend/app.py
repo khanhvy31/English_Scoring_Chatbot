@@ -67,16 +67,12 @@ system_prompt = {
     "role": "system",
     "content": "You are an  assistant"
 }
-# def filter_responses(response):
-#     # Remove any questions in the response that has question mark
-#     filtered_response = re.sub(r'\?\s*', '.', response)
-#     return filtered_response
+
 
 app.config['UPLOAD_FOLDER'] = FOLDER_TO_UPLOAD
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
-
 
 
 @app.route("/")
@@ -269,35 +265,6 @@ def get():
         return jsonify({'error': 'An internal error occurred'}), 500
     
 
-
-# @app.route('/upload_audio', methods=['POST'])
-# def upload_audio():
-#     if 'file' not in request.files:
-#         return jsonify({'error':'no file'}),400
-#     file = request.files['file']
-#     if file and allowed_file(file.filename):
-#         filename = secure_filename(file.filename)
-#         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-#         file.save(file_path)
-#         if not file_path.endswith('.wav'):
-#             sound = AudioSegment.from_file(file_path)
-#             file_path_wav = file_path.rsplit('.', 1)[0] + '.wav'
-#             sound.export(file_path_wav, format="wav")
-#             os.remove(file_path)
-#             file_path = file_path_wav
-
-#         audio, sr = librosa.load(file_path)
-#         inputs= processor(audio, return_tensors="pt")
-
-#         with torch.no_grad():
-#             predicted_ids1 = speechmodel.generate(inputs["input_features"])
-#             predicted_ids2 = speechmodel.generate(inputs["input_features"], forced_decoder_ids =processor.tokenizer.get_decoder_prompt_ids(language='en', task='translate'))
-#         transcription = processor.batch_decode(predicted_ids1, skip_special_tokens=True)[0]
-#         translation = processor.batch_decode(predicted_ids2, skip_special_tokens=True)[0]
-#         return jsonify({'transcript': transcription}), 200
-
-#     else:
-#         return jsonify({'error': 'File type not supported'}), 400
 @app.route('/upload_audio', methods=['POST'])
 def upload_audio():
     if 'file' not in request.files:
